@@ -1,45 +1,66 @@
-# PortfolioWebsite-Somik_Chowdhury
-A responsive, multi-page portfolio website built with vanilla HTML/CSS/JavaScript where all content (projects, skills, education, experience, contact) is generated from a single JSON “database” for easy updates—no HTML editing required.
+# Portfolio Website (HTML + CSS + JS + JSON "Database")
 
-## Features
+This is a multi-page portfolio site where **all content is rendered from a single database file**:
 
-- **Data-driven content (single source of truth)**  
-  All sections are populated from `database/portfolio-data.json`.
+`database/portfolio-data.json`
 
-- **Multi-page layout**
-  - Home
-  - Projects (search + filter)
-  - Experience
-  - Education
-  - Volunteering
-  - Contact
-
-- **Skills category filter (Home page)**
-  Filter skills by category (e.g., Soft Skills, Tools, Databases, DS/ML, etc.).  
-  Defaults to **Recently Used Skills** on load.
-
-- **Projects preview (Home page)**
-  Shows **latest 4 project titles** as cards.
-
-- **Responsive mobile UI**
-  Includes a **hamburger menu** for navigation on small screens.
-
-- **Profile photo + Lightbox (Contact page)**
-  Click the photo to enlarge in a modal with a close (×) button.
-
-- **Custom background**
-  Seamless background image applied to all pages with adjustable opacity overlay.
+You can add/remove/edit experience, education, projects, skills, etc. **without touching the HTML**.
 
 ---
 
-## Tech Stack
+## How to run locally (recommended)
 
-- **HTML5**
-- **CSS3**
-- **JavaScript (ES Modules)**
-- **JSON** as a lightweight “database” (no backend required)
+Because browsers block `fetch()` when you open HTML directly from disk (`file://`), run a tiny local server:
+
+### Option A — VS Code (easiest)
+1. Install the **Live Server** extension.
+2. Right-click `index.html` → **Open with Live Server**.
+
+### Option B — Python (built-in on many machines)
+In the project folder:
+```bash
+python -m http.server 5500
+```
+Then open:
+`http://localhost:5500`
 
 ---
 
-## Project Structure
+## How to edit content (the only file you need)
 
+Open:
+`database/portfolio-data.json`
+
+### Add a project
+Add an object inside the `"projects"` array. Example:
+```json
+{
+  "title": "New Project",
+  "start": "2026-01",
+  "end": "2026-02",
+  "associatedWith": "My University",
+  "highlights": ["What you built", "What you used", "What result you got"],
+  "skills": ["Python", "SQL"],
+  "links": [{"label": "GitHub", "url": "https://github.com/..." }]
+}
+```
+
+### Add experience / education / volunteering
+Same pattern: add a new object to the relevant array.
+
+---
+
+## Blunt improvement notes (don’t ignore these)
+
+- Your portfolio is only as strong as the **numbers + outcomes** you can prove.
+  - “Built X” is fine, but “Built X and improved Y by Z%” is what gets interviews.
+- If you can’t back up a metric (like “40%”), remove it or explain how you measured it.
+- Don’t overstuff the Skills list. Recruiters scan; they don’t read. Keep the *top* skills tight.
+
+---
+
+## Deploying
+This works on any static host (GitHub Pages, Netlify) **as long as the JSON file is served**.
+If you use GitHub Pages, it will work out-of-the-box.
+
+---

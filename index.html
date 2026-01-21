@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio • Home</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./index.html" aria-label="Home">
+        <span class="brand-badge">
+          <img class="brand-logo" src="./assets/images/profile.jpg" alt="Home" />
+        </span>
+
+        <span>Portfolio</span>
+      </a>
+
+      <!-- ✅ Hamburger -->
+      <button class="nav-toggle" type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="navMenu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <div class="nav-links" id="navMenu" role="navigation" aria-label="Primary">        <a href="./index.html" data-nav="home">Home</a>
+        <a href="./projects.html" data-nav="projects">Projects</a>
+        <a href="./experience.html" data-nav="experience">Experience</a>
+        <a href="./education.html" data-nav="education">Education</a>
+        <a href="./volunteering.html" data-nav="volunteering">Volunteering</a>
+        <a href="./contact.html" data-nav="contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div id="appError" class="section" style="display:none; border-color: rgba(255, 98, 98, 0.45);">
+      Error loading data.
+    </div>
+    
+<section class="hero" aria-label="Hero">
+  <div class="hero-top">
+    <div>
+      <h1 id="name">Loading…</h1>
+      <div class="subtitle" id="headline"></div>
+      <div class="subtitle" id="location"></div>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" id="btnLinkedIn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a class="btn" id="btnGitHub" href="#" target="_blank" rel="noreferrer">GitHub</a>
+      <a class="btn" href="./projects.html">View Projects</a>
+    </div>
+  </div>
+
+  <div id="summary"></div>
+
+  <div class="hero-meta" id="heroMeta"></div>
+</section>
+
+<section class="section" aria-label="Skills">
+  <div class="section-header">
+    <div>
+      <h2>Skills</h2>
+      <p class="lead">Filter skills by category. Everything comes from the database.</p>
+    </div>
+    <div class="pill"><strong>Showing:</strong> <span id="skillsCount">0</span></div>
+  </div>
+
+  <div class="controls">
+    <select id="skillsCategory" class="select" aria-label="Filter skills by category">
+      <option>Loading…</option>
+    </select>
+  </div>
+
+  <div class="tags" id="skillsBadges"></div>
+</section>
+
+<section class="section" aria-label="Featured Projects">
+  <div class="section-header">
+    <div>
+      <h2>Recent Projects</h2>
+      <p class="lead">Latest 4 project titles.</p>
+    </div>
+    <a class="btn" href="./projects.html">View all</a>
+  </div>
+
+  <div class="grid" id="homeProjects"></div>
+</section>
+
+<section class="section" aria-label="Quick Contact">
+  <div class="section-header">
+    <div>
+      <h2>Quick Contact</h2>
+      <p class="lead">If you want replies faster, make it easy for people to reach you.</p>
+    </div>
+    <a class="btn" href="./contact.html">All Contact Links</a>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <h3>Email</h3>
+      <div class="meta" id="contactEmail"></div>
+    </article>
+    <!-- <article class="card">
+      <h3>Phone</h3>
+      <div class="meta" id="contactPhone"></div>
+    </article> -->
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> • Built and Modified by Somik Chowdhury.</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+  </script>
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>

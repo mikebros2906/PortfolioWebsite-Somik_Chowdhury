@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio • Projects</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body data-page="projects">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="./index.html" aria-label="Home">
+        <span class="brand-badge">
+          <img class="brand-logo" src="./assets/images/profile.jpg" alt="Home" />
+        </span>
+        <span>Portfolio</span>
+      </a>
+
+            <!-- ✅ Hamburger -->
+      <button class="nav-toggle" type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="navMenu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <div class="nav-links" id="navMenu" role="navigation" aria-label="Primary">        <a href="./index.html" data-nav="home">Home</a>
+        <a href="./projects.html" data-nav="projects">Projects</a>
+        <a href="./experience.html" data-nav="experience">Experience</a>
+        <a href="./education.html" data-nav="education">Education</a>
+        <a href="./volunteering.html" data-nav="volunteering">Volunteering</a>
+        <a href="./contact.html" data-nav="contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div id="appError" class="section" style="display:none; border-color: rgba(255, 98, 98, 0.45);">
+      Error loading data.
+    </div>
+    
+<section class="section" aria-label="Projects">
+  <div class="section-header">
+    <div>
+      <h2>Projects</h2>
+      <p class="lead">Everything here is rendered from <code>database/portfolio-data.json</code>. Edit the data file to add/remove projects.</p>
+    </div>
+    <div class="pill"><strong>Showing:</strong> <span id="projectsCount">0</span></div>
+  </div>
+
+  <div class="controls">
+    <input id="searchInput" class="input" placeholder="Search by title / institute / keywords…" />
+    <select id="skillFilter" class="select" aria-label="Filter by skill"></select>
+  </div>
+
+  <div class="grid" id="projectsGrid"></div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> • Built and Modified by Somik Chowdhury.</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>

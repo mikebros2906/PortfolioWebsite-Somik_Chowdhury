@@ -1,0 +1,501 @@
+{
+  "profile": {
+    "fullName": "Somik Chowdhury",
+    "headline": "Stamp 2 | Web Developer | Python and Java Developer | Data Analyst | ML Engineer",
+    "location": "Dublin, County Dublin, Ireland",
+    "photo": "./assets/images/profile.jpg",
+    "summary": "Currently pursuing a Master of Science in Big Data Management and Analytics at Griffith College Dublin, with an expected graduation in September 2026. Recently completed a Higher Diploma in Science in Computing at the same institution, building a strong academic foundation in computing and analytics.\n\nMost recently contributed to operational efficiency as part of the aircraft appearance team at Sky Handling Partner. Previous roles include customer acquisition at Prou Education Recruitments, where collaboration and sales techniques were applied to achieve team goals. Core competencies span customer service, problem-solving, and technical skills in data mining, pandas, and Tableau. Passionate about leveraging analytics education and technical expertise to support data-driven decision-making.",
+    "contacts": {
+      "email": "somikireland2906@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/somikchowdhury",
+      "github": "https://github.com/mikebros2906",
+      "address": "Dublin, Ireland 🇮🇪"
+    }
+  },
+  "skills": {
+  "categories": [
+    {
+      "id": "soft_skills",
+      "label": "Soft skills",
+      "items": [
+        "Communication",
+        "Leadership",
+        "Teamwork",
+        "Problem Solving",
+        "Critical Thinking",
+        "Customer Service",
+        "Client Relations",
+        "Customer Acquisition",
+        "Team Management",
+        "Project Management",
+        "Project Planning",
+        "Editing",
+        "Articles",
+        "Creative Writing",
+        "Video editor"
+      ]
+    },
+    {
+      "id": "software_tools",
+      "label": "Software tools",
+      "items": [
+        "Jupyter",
+        "Tableau",
+        "Git",
+        "Linux",
+        "LaTeX",
+        "TensorFlow",
+        "Tkinter",
+        "Blender",
+        "Proteus",
+        "Keil uVision",
+        "Cisco Packet tracer",
+        "emu8086 emulator"
+      ]
+    },
+    {
+      "id": "network_security",
+      "label": "Network & security",
+      "items": [
+        "Network Security",
+        "Computer Networking",
+        "Networking",
+        "Wireless Networking",
+        "Network Architecture",
+        "network model",
+        "Cloud Computing"
+      ]
+    },
+    {
+      "id": "databases",
+      "label": "Databases",
+      "items": [
+        "SQL",
+        "Oracle Database",
+        "RDBMS",
+        "Database Administration",
+        "Databases"
+      ]
+    },
+    {
+      "id": "ds_ml",
+      "label": "Data science & machine learning",
+      "items": [
+        "Exploratory Data Analysis",
+        "Data Mining",
+        "Data Analysis",
+        "pandas",
+        "Machine Learning",
+        "Applied Machine Learning",
+        "Machine Learning Algorithms",
+        "Deep Learning",
+        "Support Vector Machine (SVM)",
+        "Statistical Programming",
+        "regression",
+        "R (Programming Language)"
+      ]
+    },
+    {
+      "id": "basic_programming",
+      "label": "Basic programming",
+      "items": [
+        "Python (Programming Language)",
+        "Python(basic)",
+        "Java",
+        "Java (Basic)",
+        "JavaFX",
+        "JavaScript",
+        "HTML",
+        "Cascading Style Sheets (CSS)",
+        "PHP",
+        "C (Programming Language)",
+        "Programming",
+        "Object Oriented Design",
+        "Data Structures",
+        "Computer Programming",
+        "Computer Science"
+      ]
+    },
+    {
+      "id": "recently_used",
+      "label": "Recently used skills",
+      "items": [
+        "Python (Programming Language)",
+        "pandas",
+        "SQL",
+        "Jupyter",
+        "Exploratory Data Analysis",
+        "Machine Learning",
+        "Git",
+        "Tableau"
+      ]
+    }
+  ]
+},
+  "languages": [
+    {
+      "name": "German",
+      "level": "Elementary"
+    },
+    {
+      "name": "Bengali",
+      "level": "Native or Bilingual"
+    },
+    {
+      "name": "English",
+      "level": "Native or Bilingual"
+    },
+    {
+      "name": "Hindi",
+      "level": "Native or Bilingual"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Java (Basic)"
+    },
+    {
+      "name": "Bits and Bytes of Computer Networking"
+    },
+    {
+      "name": "SQL for data Science"
+    },
+    {
+      "name": "Applied Machine Learning in Python"
+    },
+    {
+      "name": "Python (basic)"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Sky Handling Partner",
+      "title": "Aircraft appearance",
+      "start": "2025-06",
+      "end": "2025-10",
+      "location": "Dublin, County Dublin, Ireland",
+      "highlights": [
+        "Contributed to operational efficiency as part of the aircraft appearance team during aircraft turnaround operations."
+      ],
+      "tags": [
+        "Operations",
+        "Teamwork",
+        "Customer Service"
+      ]
+    },
+    {
+      "company": "Prou Education Recruitments",
+      "title": "Customer acquisition and sales",
+      "start": "2023-02",
+      "end": "2023-08",
+      "location": "Bengaluru, Karnataka, India",
+      "highlights": [
+        "Spearheaded customer acquisition efforts, leveraging a range of sales techniques to meet and exceed targets.",
+        "Demonstrated leadership and teamwork skills to effectively manage and contribute to a sales team.",
+        "Utilized problem-solving and client relations skills to provide excellent customer service and build lasting relationships."
+      ],
+      "tags": [
+        "Sales",
+        "Client Relations",
+        "Teamwork"
+      ]
+    },
+    {
+      "company": "Steel Authority of India Limited",
+      "title": "Project Intern",
+      "start": "2022-06",
+      "end": "2022-07",
+      "location": "Bhilai, Chhattisgarh, India",
+      "highlights": [
+        "Designed a GSM-based fire detection system using C++, reducing emergency response time by 40%.",
+        "Collaborated with a 4-member team to integrate real-time SMS alerts, preventing potential property damages."
+      ],
+      "tags": [
+        "C++",
+        "Arduino",
+        "GSM",
+        "Teamwork"
+      ]
+    },
+    {
+      "company": "Paradox India",
+      "title": "Content writer",
+      "start": "2020-06",
+      "end": "2022-06",
+      "location": "India",
+      "highlights": [
+        "Wrote and edited articles on a variety of topics including science, space, and music.",
+        "Utilized project planning and creative writing skills to produce high-quality content.",
+        "Collaborated with a team to interview and showcase new and emerging artists."
+      ],
+      "tags": [
+        "Writing",
+        "Editing",
+        "Collaboration"
+      ]
+    },
+    {
+      "company": "Corizo",
+      "title": "Web Developer Internship",
+      "start": "2022-05",
+      "end": "2022-05",
+      "location": "India",
+      "highlights": [
+        "Developed a functional e-commerce website from concept to deployment using HTML, CSS, and JavaScript.",
+        "Implemented core front-end features, enabling users to select items and manage a shopping cart.",
+        "Created an interactive user interface using front-end web development fundamentals.",
+        "Used Git for version control and collaborated effectively within a team."
+      ],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Git"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Griffith College Dublin",
+      "qualification": "Masters of Science, Big Data Management and Analytics",
+      "start": "2025-09",
+      "end": "2026-09",
+      "location": "Dublin, Ireland"
+    },
+    {
+      "institution": "Griffith College Dublin",
+      "qualification": "Higher Diploma, Computing Science",
+      "start": "2024-09",
+      "end": "2025-09",
+      "location": "Dublin, Ireland"
+    },
+    {
+      "institution": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "qualification": "Bachelor's in Engineering, Electronics and Computer Engineering",
+      "start": "2019-06",
+      "end": "2023-06",
+      "location": "Chennai, India"
+    },
+    {
+      "institution": "Delhi Public School, Bokaro Steel City",
+      "qualification": "Schooling",
+      "start": "2004-04",
+      "end": "2019-04",
+      "location": "Bokaro Steel City, India"
+    }
+  ],
+  "volunteering": [
+    {
+      "organization": "National Service Scheme",
+      "role": "Volunteer",
+      "start": "2020-02",
+      "end": "2020-05",
+      "cause": "Environment",
+      "highlights": [
+        "Orchestrated and participated in community development projects including blood donation drives and environmental awareness campaigns; managed a team of 15 volunteers.",
+        "Led a successful tree plantation drive, resulting in the planting of 500+ saplings."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Melbourne Housing Data Analysis using Jupyter",
+      "start": "2025-10",
+      "end": "2025-12",
+      "associatedWith": "Griffith College Dublin",
+      "highlights": [
+        "Analyzed and provided insights for the Melbourne Housing dataset.",
+        "Managed 35,000+ data points by imputing missing values and resolving outliers where necessary.",
+        "Identified focus areas for sales strategy based on exploratory analysis."
+      ],
+      "skills": [
+        "Data Analysis",
+        "Jupyter",
+        "Exploratory Data Analysis"
+      ],
+      "links": []
+    },
+    {
+      "title": "Predicting medical conditions of patients using real time data",
+      "start": "2025-10",
+      "end": "2025-12",
+      "associatedWith": "Griffith College Dublin",
+      "highlights": [
+        "Built an end-to-end ML pipeline to predict 7 medical conditions using demographic, clinical, and lifestyle risk factors (CRISP-DM).",
+        "Preprocessed data (missing values, IQR outlier capping, encoding/scaling) and trained Multinomial Logistic Regression; benchmarked against tuned Random Forest (GridSearchCV + StratifiedKFold, macro-F1).",
+        "Added KMeans patient segmentation for profiling; achieved 0.912 test accuracy and 0.897 macro-F1."
+      ],
+      "skills": [
+        "Jupyter",
+        "Applied Machine Learning",
+        "Exploratory Data Analysis"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/mikebros2906/Medical-Condition-Classification-and-Patient-Profiling-Using-Clinical-and-Lifestyle-Data"
+        }
+      ]
+    },
+    {
+      "title": "Breast Cancer prediction model using ML",
+      "start": "2025-08",
+      "end": "2025-09",
+      "associatedWith": "",
+      "highlights": [
+        "Developed a breast cancer prediction model in Python using Support Vector Machine (SVM) from scikit-learn.",
+        "Performed data collection, cleaning, and standardization on a dataset with 500+ entries; implemented a train-test split for evaluation.",
+        "Built a predictive system to classify breast cancer as benign or malignant based on diagnostic data."
+      ],
+      "skills": [
+        "Applied Machine Learning",
+        "Support Vector Machine (SVM)",
+        "Data Analysis",
+        "Jupyter"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/mikebros2906/Cancer-prediction-using-ML"
+        }
+      ]
+    },
+    {
+      "title": "Wordle game using Java",
+      "start": "2024-10",
+      "end": "2024-12",
+      "associatedWith": "Griffith College Dublin",
+      "highlights": [
+        "Built a console-based Wordle game in Java with input validation, scoring, and attempt tracking.",
+        "Implemented letter marking, regex validation, and menu-driven gameplay to enhance user experience.",
+        "Applied OOP principles for modular design and code reusability.",
+        "Integrated a website UI for scoring using JavaScript."
+      ],
+      "skills": [
+        "Java",
+        "Git",
+        "Programming"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/mikebros2906/Wordle-Game"
+        }
+      ]
+    },
+    {
+      "title": "Automated Fault detection system for Distillation Columns using ML",
+      "start": "2023-01",
+      "end": "2023-05",
+      "associatedWith": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "highlights": [
+        "Developed an automated fault detection system for distillation columns using gamma scanning data and FFT for quantitative analysis.",
+        "Built a Python GUI to process real-world data from Bhabha Atomic Research Centre (B.A.R.C.), reducing manual evaluation.",
+        "Implemented ratio-based comparison with an error margin to predict uneven liquid distribution; matched a completed case study."
+      ],
+      "skills": [
+        "Applied Machine Learning",
+        "Machine Learning Algorithms"
+      ],
+      "links": []
+    },
+    {
+      "title": "Hospital Management system using SQL",
+      "start": "2022-09",
+      "end": "2022-11",
+      "associatedWith": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "highlights": [
+        "Engineered a hospital management system using Oracle SQL/PLSQL, focusing on normalization and relational schema modeling.",
+        "Automated patient registration, billing, and staff workflows using stored procedures, triggers, and role-based access control.",
+        "Optimized performance with indexes, sequences, and cursors for scalable and reliable transactions."
+      ],
+      "skills": [
+        "SQL",
+        "Database Administration",
+        "Oracle Database"
+      ],
+      "links": []
+    },
+    {
+      "title": "Underwater Fish Recognition using Deep learning",
+      "start": "2022-07",
+      "end": "2022-11",
+      "associatedWith": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "highlights": [
+        "Built a fish recognition model using pre-trained MobileNetV2 CNN; achieved 97.41% test accuracy on 9 fish species.",
+        "Used NumPy, pandas, scikit-learn, TensorFlow, and Keras for preprocessing, training, and testing.",
+        "Improved image quality via scaling, cropping, and filtering to boost feature reliability."
+      ],
+      "skills": [
+        "Deep Learning",
+        "Applied Machine Learning",
+        "TensorFlow"
+      ],
+      "links": []
+    },
+    {
+      "title": "Password based door-lock system in 8051 using Proteus & Keil uVision5",
+      "start": "2022-03",
+      "end": "2022-05",
+      "associatedWith": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "highlights": [
+        "Designed and simulated a password-based door-lock system using an 8051 microcontroller.",
+        "Developed C code in Keil uVision5 to handle password verification, keypad input, and control a door motor and LCD.",
+        "Validated functionality using Proteus simulation to grant/deny access based on a five-digit password."
+      ],
+      "skills": [
+        "Proteus",
+        "Keil uVision",
+        "C (Programming Language)"
+      ],
+      "links": []
+    },
+    {
+      "title": "Fire detector using GSM",
+      "start": "2022-06",
+      "end": "2022-07",
+      "associatedWith": "Steel Authority of India Limited",
+      "highlights": [
+        "Built a temperature-sensor based fire detection concept using GSM and C language to detect temperature rise and send alerts to phones."
+      ],
+      "skills": [
+        "Arduino",
+        "Git",
+        "Programming"
+      ],
+      "links": []
+    },
+    {
+      "title": "Tic-Tac-Toe Game Simulation using Emu8086 Software",
+      "start": "2021-09",
+      "end": "2021-11",
+      "associatedWith": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "highlights": [
+        "Developed a two-player Tic-Tac-Toe game using assembly language in the Emu8086 emulator.",
+        "Implemented game logic for player turns, win conditions (horizontal, vertical, diagonal), and tie games.",
+        "Used emulator features to simulate CPU, RAM, and display for a functional 3x3 grid game."
+      ],
+      "skills": [
+        "emu8086 emulator",
+        "Assembly Language"
+      ],
+      "links": []
+    },
+    {
+      "title": "IoT Applications in Smart Home using Cisco Packet Tracer",
+      "start": "2021-04",
+      "end": "2021-06",
+      "associatedWith": "SRMIST, Kattankulathur, Chennai, Tamil Nadu",
+      "highlights": [
+        "Built an IoT smart home setup in Cisco Packet Tracer integrating a home gateway, smartphone, and smart devices.",
+        "Implemented automation: carbon detection alarm, motion-detecting webcam trigger, humidity-controlled fan, and temperature-based siren.",
+        "Configured interconnected devices for autonomous operation to improve home security, comfort, and energy efficiency."
+      ],
+      "skills": [
+        "Internet of Things (IoT)",
+        "Cisco Packet Tracer"
+      ],
+      "links": []
+    }
+  ]
+}
