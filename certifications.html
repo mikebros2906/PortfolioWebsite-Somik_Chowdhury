@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio • Contact</title>
+  <title>Portfolio • Certifications</title>
   <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
-<body data-page="contact">
+
+<body data-page="certifications">
   <header class="site-header">
     <nav class="nav">
       <a class="brand" href="./index.html" aria-label="Home">
@@ -16,10 +17,11 @@
         <span>Portfolio</span>
       </a>
 
+      <!-- Hamburger (keep exactly as your other pages) -->
       <button class="nav-toggle" type="button"
-          aria-label="Open menu"
-          aria-expanded="false"
-          aria-controls="navMenu">
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -30,7 +32,10 @@
         <a href="./projects.html" data-nav="projects">Projects</a>
         <a href="./experience.html" data-nav="experience">Experience</a>
         <a href="./education.html" data-nav="education">Education</a>
-         <a href="./certifications.html" data-nav="certifications">Certifications</a>
+
+        <!-- ✅ NEW -->
+        <a href="./certifications.html" data-nav="certifications">Certifications</a>
+
         <a href="./volunteering.html" data-nav="volunteering">Volunteering</a>
         <a href="./contact.html" data-nav="contact">Contact</a>
       </div>
@@ -38,31 +43,24 @@
   </header>
 
   <main class="container">
-    <div id="appError" class="section" style="display:none; border-color: rgba(255, 98, 98, 0.45);">
-      Error loading data.
-    </div>
-    
-<section class="section" aria-label="Contact">
-  <div class="section-header">
-    <div>
-      <h2>Contact</h2>
-      <p class="lead">Thank you for checking out my profile. You can contact me or check my profiles via all these different methods.</p>
-    </div>
-  </div>
-  <div class="grid" id="contactGrid"></div>
-</section>
+    <div class="section" aria-label="Certifications">
+      <div class="section-header">
+        <div>
+          <h2>Certifications</h2>
+          <p class="lead">Filter by skill or search by certificate / issuer name.</p>
+        </div>
+        <div class="pill"><strong>Showing:</strong> <span id="certificationsCount">0</span></div>
+      </div>
 
-<!-- Photo Lightbox Modal -->
-<div id="photoModal" class="photo-modal" aria-hidden="true">
-  <div class="photo-modal__backdrop" data-close="true"></div>
+      <div class="controls">
+        <input id="certSearch" class="input" placeholder="Search certificate / issuer..." />
+        <select id="certSkill" class="select" aria-label="Filter certificates by skill">
+          <option>Loading…</option>
+        </select>
+      </div>
 
-  <div class="photo-modal__content" role="dialog" aria-modal="true" aria-label="Profile photo">
-    <button id="photoModalClose" class="photo-modal__close" type="button" aria-label="Close">
-      ×
-    </button>
-    <img id="photoModalImg" class="photo-modal__img" src="" alt="Profile photo enlarged" />
-  </div>
-</div>
+      <div class="grid" id="certificationsGrid"></div>
+    </div>
   </main>
 
   <footer class="footer">

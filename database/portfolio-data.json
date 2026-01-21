@@ -151,23 +151,7 @@
       "level": "Native or Bilingual"
     }
   ],
-  "certifications": [
-    {
-      "name": "Java (Basic)"
-    },
-    {
-      "name": "Bits and Bytes of Computer Networking"
-    },
-    {
-      "name": "SQL for data Science"
-    },
-    {
-      "name": "Applied Machine Learning in Python"
-    },
-    {
-      "name": "Python (basic)"
-    }
-  ],
+
   "experience": [
     {
       "company": "Sky Handling Partner",
@@ -498,5 +482,55 @@
       ],
       "links": []
     }
-  ]
+  ],
+  "certifications": [
+  {
+    "title": "Machine Learning with Python: Foundations",
+    "issuer": "LinkedIn Learning Community",
+    "issued": "Jun 2025",
+    "credentialId": "851ae228b2caf6e0fccc209b062741cdccf4f498c8c317050b4f5dc16c7c4f3e",
+    "credentialUrl": "https://www.linkedin.com/learning/certificates/851ae228b2caf6e0fccc209b062741cdccf4f498c8c317050b4f5dc16c7c4f3e?u=2189292",
+    "skills": ["Machine Learning", "Python (Programming Language)"]
+  },
+  {
+    "title": "Java (Basic)",
+    "issuer": "HackerRank",
+    "issued": "May 2025",
+    "credentialId": "F45B1CAB2FDD",
+    "credentialUrl": "https://www.hackerrank.com/certificates/f45b1cab2fdd",
+    "skills": ["Java", "Problem Solving", "Computer Science", "Programming", "Computer Programming"]
+  },
+  {
+    "title": "Python (Basic)",
+    "issuer": "HackerRank",
+    "issued": "Nov 2024",
+    "credentialId": "D4ECDDB3B5C19",
+    "credentialUrl": "https://www.hackerrank.com/certificates/d4ecdd3b5c19",
+    "skills": ["Programming", "Problem Solving", "Computer Science", "Python (Programming Language)"]
+  },
+  {
+    "title": "Bits and Bytes of Computer Networking",
+    "issuer": "Google",
+    "issued": "Apr 2022",
+    "credentialId": "PDZTH7BPEHH5",
+    "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/PDZTH7BPEHH5",
+    "skills": ["Wireless Networking", "Networking", "Network Security", "Computer Networking", "Cloud Computing", "Problem Solving"]
+  },
+  {
+    "title": "SQL for Data Science",
+    "issuer": "University of California, Davis",
+    "issued": "Mar 2022",
+    "credentialId": "82HGDKJ466DT",
+    "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/82HGDKJ466DT",
+    "skills": ["Programming", "SQL", "Data Analysis"]
+  },
+  {
+    "title": "Applied Machine Learning in Python",
+    "issuer": "University of Michigan",
+    "issued": "Sep 2021",
+    "credentialId": "Q4N89CBKNFB2",
+    "credentialUrl": "https://www.coursera.org/account/accomplishments/verify/Q4N89CBKNFB2",
+    "skills": ["Machine Learning", "Programming", "Data Analysis", "Algorithms", "Regression", "Python (Programming Language)"]
+  }
+]
 }

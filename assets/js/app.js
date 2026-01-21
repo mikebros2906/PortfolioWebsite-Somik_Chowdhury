@@ -6,8 +6,9 @@ import {
   educationCard,
   projectCard,
   volunteeringCard,
-  setHtml,
-  setText
+  certificationCard,   // ✅ add
+  setText,
+  setHtml
 } from "./render.js";
 
 function setActiveNav() {
@@ -160,6 +161,73 @@ async function renderProjects(db) {
   draw();
 }
 
+function renderCertifications(db) {
+  const certsRaw = Array.isArray(db.certifications) ? db.certifications : [];
+  const certs = [...certsRaw];
+
+  const gridId = "certificationsGrid";
+  const searchEl = document.getElementById("certSearch");
+  const skillEl = document.getElementById("certSkill");
+
+  // Sort newest first if "issued" exists like "Jun 2025"
+  const monthMap = { jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12 };
+  const issuedKey = (s) => {
+    const parts = String(s || "").trim().split(/\s+/);
+    if (parts.length < 2) return 0;
+    const m = monthMap[(parts[0] || "").slice(0,3).toLowerCase()] || 0;
+    const y = parseInt(parts[1], 10) || 0;
+    return y * 100 + m;
+  };
+  certs.sort((a,b) => issuedKey(b.issued) - issuedKey(a.issued));
+
+  // Build unique skill list
+  const skills = uniq(
+    certs.flatMap(c => (Array.isArray(c.skills) ? c.skills : []))
+  ).sort((a,b) => a.localeCompare(b));
+
+  // Fill dropdown safely (no innerHTML injection)
+  if (skillEl) {
+    skillEl.innerHTML = "";
+    const allOpt = document.createElement("option");
+    allOpt.value = "";
+    allOpt.textContent = "All skills";
+    skillEl.appendChild(allOpt);
+
+    for (const s of skills) {
+      const opt = document.createElement("option");
+      opt.value = s;
+      opt.textContent = s;
+      skillEl.appendChild(opt);
+    }
+  }
+
+  const apply = () => {
+    const q = normalize(searchEl?.value);
+    const chosenSkill = skillEl?.value || "";
+
+    const filtered = certs.filter(c => {
+      const hay = normalize([
+        c.title, c.issuer, c.issued, c.credentialId,
+        ...(Array.isArray(c.skills) ? c.skills : [])
+      ].join(" "));
+
+      const matchesText = !q || hay.includes(q);
+      const matchesSkill = !chosenSkill || (Array.isArray(c.skills) && c.skills.includes(chosenSkill));
+      return matchesText && matchesSkill;
+    });
+
+    setText("certificationsCount", String(filtered.length));
+    renderListCards(gridId, filtered, certificationCard);
+  };
+
+  searchEl?.addEventListener("input", apply);
+  skillEl?.addEventListener("change", apply);
+
+  apply();
+}
+
+
+
 async function renderExperience(db) {
   const items = db.experience || [];
   renderListCards("experienceGrid", items, experienceCard);
@@ -311,6 +379,7 @@ function initMobileNav(){
     if (page === "projects") await renderProjects(db);
     if (page === "experience") await renderExperience(db);
     if (page === "education") await renderEducation(db);
+    if (page === "certifications") renderCertifications(db);
     if (page === "volunteering") await renderVolunteering(db);
     if (page === "contact") await renderContact(db);
   } catch (err) {

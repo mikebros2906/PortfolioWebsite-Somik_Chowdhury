@@ -274,6 +274,43 @@ const repoHtml = githubLinks.length
   `;
 }
 
+export function certificationCard(c) {
+  const title = c?.title || "Untitled certification";
+  const issuer = c?.issuer || "";
+  const issued = c?.issued || "";
+  const credentialUrl = c?.credentialUrl || "";
+  const skills = Array.isArray(c?.skills) ? c.skills : [];
+
+  // ✅ only a button (no credential id/text)
+  const credentialBtn = credentialUrl
+    ? `
+      <div class="project-links">
+        <a class="btn btn--sm github-btn" href="${escapeHtml(credentialUrl)}" target="_blank" rel="noreferrer">
+          Show credential
+        </a>
+      </div>
+    `
+    : "";
+
+  const skillsLine = skills.length
+    ? `<div class="meta"><strong>Skills:</strong> ${escapeHtml(skills.join(" • "))}</div>`
+    : "";
+
+  return `
+    <article class="card">
+      <h3>${escapeHtml(title)}</h3>
+      ${issuer ? `<div class="meta">${escapeHtml(issuer)}</div>` : ""}
+      ${issued ? `<div class="meta">Issued ${escapeHtml(issued)}</div>` : ""}
+      ${credentialBtn}
+      ${skillsLine}
+    </article>
+  `;
+}
+
+
+
+
+
 export function volunteeringCard(v) {
   return card({
     title: `${v.role} — ${v.organization}`,
