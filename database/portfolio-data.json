@@ -9,6 +9,7 @@
       "email": "somikireland2906@gmail.com",
       "linkedin": "https://www.linkedin.com/in/somikchowdhury",
       "github": "https://github.com/mikebros2906",
+      "leetcode": "https://leetcode.com/u/somik_chowdhury/",
       "address": "Dublin, Ireland 🇮🇪"
     }
   },
@@ -118,7 +119,7 @@
     },
     {
       "id": "recently_used",
-      "label": "Recently used skills",
+      "label": "Featured Skills",
       "items": [
         "Python (Programming Language)",
         "pandas",
@@ -332,7 +333,7 @@
       ],
       "links": [
         {
-          "label": "GitHub",
+          "label": "View GitHub Repository",
           "url": "https://github.com/mikebros2906/Medical-Condition-Classification-and-Patient-Profiling-Using-Clinical-and-Lifestyle-Data"
         }
       ]
@@ -355,7 +356,7 @@
       ],
       "links": [
         {
-          "label": "GitHub",
+          "label": "View GitHub Repository",
           "url": "https://github.com/mikebros2906/Cancer-prediction-using-ML"
         }
       ]
@@ -378,7 +379,7 @@
       ],
       "links": [
         {
-          "label": "GitHub",
+          "label": "View GitHub Repository",
           "url": "https://github.com/mikebros2906/Wordle-Game"
         }
       ]

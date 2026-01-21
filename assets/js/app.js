@@ -241,6 +241,16 @@ function initMobileNav(){
   const menu = document.getElementById("navMenu");
   if (!btn || !menu) return;
 
+  // Close when tapping the empty area of the overlay (not a link)
+  menu.addEventListener("click", (e) => {
+  if (e.target === menu) {
+    document.body.classList.remove("nav-open");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
+  }
+  });
+
+
   function closeMenu(){
     document.body.classList.remove("nav-open");
     btn.setAttribute("aria-expanded", "false");
@@ -288,6 +298,7 @@ function initMobileNav(){
     setActiveNav();
     initMobileNav();
     const db = await loadDb();
+    
 
     const page = document.body.dataset.page || "home";
     if (page === "home") await renderHome(db);

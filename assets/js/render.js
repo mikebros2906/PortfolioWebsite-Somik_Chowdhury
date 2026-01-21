@@ -118,6 +118,10 @@ export function renderHero(profile) {
     const el = document.getElementById("btnGitHub");
     if (el) el.href = c.github;
   }
+  if (c.leetcode) {
+  const el = document.getElementById("btnLeetCode");
+  if (el) el.href = c.leetcode;
+  }
 }
 
 export function renderListCards(containerId, items, mapFn) {
@@ -175,13 +179,47 @@ export function educationCard(x) {
 }
 
 export function projectCard(p) {
-  return card({
-    title: p.title,
-    meta: `${formatRange(p.start, p.end)}${p.associatedWith ? " • " + p.associatedWith : ""}`,
-    highlights: p.highlights ?? [],
-    tags: p.skills ?? [],
-    links: p.links ?? []
-  });
+  const title = p?.title || "Untitled project";
+  const org = p?.associatedWith || "";
+  const start = p?.start || "";
+  const end = p?.end || "";
+  const highlights = Array.isArray(p?.highlights) ? p.highlights : [];
+  const skills = Array.isArray(p?.skills) ? p.skills : [];
+
+  // ✅ GitHub links only (hide if none)
+const githubLinks = (Array.isArray(p?.links) ? p.links : [])
+  .filter(l => l && l.url && String(l.url).trim())
+  .filter(l => /github/i.test(l.label || "") || /github\.com/i.test(l.url || ""));
+
+const repoHtml = githubLinks.length
+  ? `
+    <div class="project-links">
+      ${githubLinks.map(l => {
+        const raw = (l.label || "").trim();
+        const text = /github/i.test(raw) ? "View Github Repository" : (raw || "View Repo");
+        return `
+          <a class="btn btn--sm github-btn" href="${escapeHtml(l.url)}" target="_blank" rel="noreferrer">
+            ${escapeHtml(text)}
+          </a>
+        `;
+      }).join("")}
+    </div>
+  `
+  : "";
+
+  return `
+    <article class="card">
+      <h3>${escapeHtml(title)}</h3>
+      ${org ? `<div class="meta">${escapeHtml(org)}</div>` : ""}
+      ${(start || end) ? `<div class="meta">${escapeHtml(start)}${start && end ? " – " : ""}${escapeHtml(end)}</div>` : ""}
+
+      ${highlights.length ? `<ul>${highlights.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>` : ""}
+
+      ${repoHtml}  
+      
+      ${skills.length ? `<div class="tags">${skills.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("")}</div>` : ""}    
+    </article>
+  `;
 }
 
 export function volunteeringCard(v) {
