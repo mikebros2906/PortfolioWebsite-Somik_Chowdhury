@@ -123,6 +123,29 @@ a:hover{ text-decoration:underline; }
   box-shadow: var(--shadow);
 }
 
+#name{
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-weight: 700; /* optional */
+}
+
+/* Typewriter caret for the name */
+#name.typing::after{
+  content: "";
+  display: inline-block;
+  width: 0.12em;
+  height: 0.9em;
+  margin-left: 0.12em;
+  background: currentColor;
+  vertical-align: -0.08em;
+  animation: caretBlink 0.8s steps(1) infinite;
+  opacity: 0.85;
+}
+
+@keyframes caretBlink{
+  50% { opacity: 0; }
+}
+
+
 .hero-top{
   display:flex;
   gap: 18px;
@@ -616,3 +639,34 @@ a:hover{ text-decoration:underline; }
 }
 
 
+/* Make sure the name can host a pseudo-element nicely */
+#name{
+  display: inline-block;
+  position: relative;
+}
+
+/* Blinking caret (only when .cursor-on is present) */
+#name.cursor-on::after{
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 6px;
+  background: currentColor;
+  vertical-align: -0.12em;
+  animation: caretBlink 0.9s steps(2, start) infinite;
+}
+
+@keyframes caretBlink{
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.contact-email{
+  display: inline-block;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.contact-email:hover{
+  text-decoration-thickness: 2px;
+}

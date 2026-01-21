@@ -12,8 +12,60 @@ export function setHtml(id, html) {
   el.innerHTML = html ?? "";
 }
 
+function typeText(el, text, { speed = 5, delay = 50 } = {}) {
+  // cancel previous run
+  if (el._typeTimer) clearTimeout(el._typeTimer);
+
+  // reset state
+  el.textContent = "";
+  el.classList.remove("cursor-on");
+
+  // respect reduced motion
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+    el.textContent = text;
+    el.classList.add("cursor-on"); // show caret even without typing
+    return;
+  }
+
+  let i = 0;
+  const schedule = (fn, ms) => (el._typeTimer = setTimeout(fn, ms));
+
+  schedule(() => {
+    const tick = () => {
+      el.textContent = text.slice(0, i++);
+      if (i <= text.length) {
+        schedule(tick, speed);
+      } else {
+        el.classList.add("cursor-on"); // ✅ caret appears after typing ends
+      }
+    };
+    tick();
+  }, delay);
+}
+
+
+
+
 export function renderHero(profile) {
-  setText("name", profile.fullName);
+  const nameEl = document.getElementById("name");
+const fullName = profile.fullName || "";
+
+// type only on first load (per tab session) and only on home page
+const isHome = document.body?.dataset?.page === "home";
+const alreadyTyped = sessionStorage.getItem("typedName") === "1";
+
+if (nameEl) {
+  // If renderHero gets called again, cancel the previous typing cleanly
+  if (nameEl._typeTimer) clearTimeout(nameEl._typeTimer);
+  nameEl.textContent = "";
+
+  if (isHome) {
+    typeText(nameEl, fullName, { speed: 55, delay: 150 });
+  } else {
+    nameEl.textContent = fullName;
+  }
+}
+
   setText("headline", profile.headline);
   setText("location", profile.location);
 

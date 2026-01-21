@@ -116,7 +116,13 @@ async function renderHome(db) {
 
   // Quick contact
   const c = db.profile?.contacts || {};
-  setText("contactEmail", c.email || "");
+const emailEl = document.getElementById("contactEmail");
+if (emailEl && c.email) {
+  const email = String(c.email).trim();
+  emailEl.textContent = email;
+  emailEl.href = `mailto:${encodeURIComponent(email)}`;
+}
+
   setText("contactPhone", c.phone || "");
 }
 
