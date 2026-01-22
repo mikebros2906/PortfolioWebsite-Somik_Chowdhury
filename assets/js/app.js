@@ -1,4 +1,4 @@
-import { loadDb } from "./db.js";
+import { loadDb, escapeHtml } from "./db.js";
 import {
   renderHero,
   renderListCards,
@@ -103,16 +103,117 @@ async function renderHome(db) {
     .sort((a, b) => (b.start || "").localeCompare(a.start || ""))
     .slice(0, 4);
 
+
+  // ⚠️ you said your container id is "container"
   const container = document.getElementById("homeProjects");
   if (container) {
-    container.innerHTML = latest4
-      .map(p => `
-        <article class="card">
-          <h3><a href="./projects.html">${p.title}</a></h3>
+    const grid = container; // ✅ alias so the code using "grid" works
+    const projectDetailsHtml = (p) => {
+      const org = p?.associatedWith || "";
+      const start = p?.start || "";
+      const end = p?.end || "";
+      const highlights = Array.isArray(p?.highlights) ? p.highlights : [];
+      const skills = Array.isArray(p?.skills) ? p.skills : [];
+
+      // GitHub links only
+      const githubLinks = (Array.isArray(p?.links) ? p.links : [])
+        .filter(l => l && l.url && String(l.url).trim())
+        .filter(l => /github/i.test(l.label || "") || /github\.com/i.test(l.url || ""));
+
+      const repoHtml = githubLinks.length
+        ? `
+          <div class="project-links">
+            ${githubLinks.map(l => {
+              const raw = (l.label || "").trim();
+              const text = /github/i.test(raw) ? "View Github Repository" : (raw || "View Repo");
+              return `
+                <a class="btn btn--sm github-btn" href="${escapeHtml(l.url)}" target="_blank" rel="noreferrer">
+                  ${escapeHtml(text)}
+                </a>
+              `;
+            }).join("")}
+          </div>
+        `
+        : "";
+
+      const dateHtml = (start || end)
+        ? `<div class="meta">${escapeHtml(start)}${start && end ? " – " : ""}${escapeHtml(end)}</div>`
+        : "";
+
+      const highlightsHtml = highlights.length
+        ? `<ul>${highlights.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
+        : "";
+
+      const skillsHtml = skills.length
+        ? `<div class="tags">${skills.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("")}</div>`
+        : "";
+
+      return `
+        ${org ? `<div class="meta">${escapeHtml(org)}</div>` : ""}
+        ${dateHtml}
+        ${highlightsHtml}
+        ${repoHtml}
+        ${skillsHtml}
+      `;
+    };
+
+    container.innerHTML = latest4.map((p, i) => {
+      const id = `homeProjDetails-${i}`;
+      return `
+        <article class="card home-project">
+          <button class="home-project__toggle" type="button"
+            aria-expanded="false"
+            aria-controls="${id}">
+            <h3>${escapeHtml(p?.title || "Untitled project")}</h3>
+            <span class="home-project__chev" aria-hidden="true">▾</span>
+          </button>
+
+          <div id="${id}" class="home-project__details" hidden>
+            ${projectDetailsHtml(p)}
+          </div>
         </article>
-      `)
-      .join("");
+      `;
+    }).join("");
+
+   
+// Accordion behavior (open one at a time)
+const closeAll = () => {
+  grid.querySelectorAll(".home-project").forEach(card => card.classList.remove("is-open"));
+
+  grid.querySelectorAll(".home-project__toggle").forEach(btn => {
+    btn.setAttribute("aria-expanded", "false");
+    const panelId = btn.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (panel) panel.hidden = true;
+  });
+};
+
+grid.querySelectorAll(".home-project__toggle").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+
+    // if clicking the already-open one -> close it
+    if (expanded) {
+      closeAll();
+      return;
+    }
+
+    closeAll();
+
+    // open the clicked one
+    btn.setAttribute("aria-expanded", "true");
+    const panelId = btn.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (panel) panel.hidden = false;
+
+    // make this card span full width
+    const card = btn.closest(".home-project");
+    if (card) card.classList.add("is-open");
+  });
+});
+
   }
+
 
 
   // Quick contact

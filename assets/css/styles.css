@@ -137,7 +137,7 @@ a:hover{ text-decoration:underline; }
   margin-left: 0.12em;
   background: currentColor;
   vertical-align: -0.08em;
-  animation: caretBlink 0.8s steps(1) infinite;
+  animation: caretBlink 0.5s steps(1) infinite;
   opacity: 0.85;
 }
 
@@ -527,7 +527,7 @@ a:hover{ text-decoration:underline; }
 }
 
 /* ===== NAV: mobile full-screen overlay (ONLY navbar items) ===== */
-@media (max-width: 720px){
+@media (max-width: 872px){
 
   /* show hamburger on mobile */
   .nav-toggle{
@@ -678,4 +678,38 @@ a:hover{ text-decoration:underline; }
 }
 .cert-link:hover{
   border-bottom-color: rgba(0,0,0,0.6);
+}
+
+.home-project__toggle{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+}
+
+.home-project__toggle h3{ margin: 0; }
+
+.home-project__chev{
+  font-size: 18px;
+  line-height: 1;
+  opacity: 0.9;
+  transition: transform 180ms ease;
+}
+
+.home-project__toggle[aria-expanded="true"] .home-project__chev{
+  transform: rotate(180deg);
+}
+
+.home-project__details{ margin-top: 10px; }
+
+/* Home Projects accordion: when open, take full row so others realign */
+#homeProjects .home-project.is-open{
+  grid-column: 1 / -1;   /* span all 12 columns */
 }
