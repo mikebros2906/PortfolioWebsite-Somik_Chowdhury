@@ -177,42 +177,158 @@ async function renderHome(db) {
 
    
 // Accordion behavior (open one at a time)
-const closeAll = () => {
-  grid.querySelectorAll(".home-project").forEach(card => card.classList.remove("is-open"));
+// ===== Animated Accordion + Smooth Reflow (FLIP) =====
+const prefersReduced =
+  window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
-  grid.querySelectorAll(".home-project__toggle").forEach(btn => {
-    btn.setAttribute("aria-expanded", "false");
-    const panelId = btn.getAttribute("aria-controls");
-    const panel = panelId ? document.getElementById(panelId) : null;
-    if (panel) panel.hidden = true;
+const cards = () => Array.from(grid.querySelectorAll(".home-project"));
+
+function animateOpen(panel){
+  if (!panel) return;
+  panel.hidden = false;
+
+  if (prefersReduced) return;
+
+  // start closed
+  panel.style.height = "0px";
+  panel.style.opacity = "0";
+  panel.style.transform = "translateY(-6px)";
+  panel.style.transition = "height 260ms ease, opacity 180ms ease, transform 180ms ease";
+
+  // go to full height
+  const target = panel.scrollHeight;
+  requestAnimationFrame(() => {
+    panel.style.height = `${target}px`;
+    panel.style.opacity = "1";
+    panel.style.transform = "translateY(0)";
   });
-};
 
-grid.querySelectorAll(".home-project__toggle").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const expanded = btn.getAttribute("aria-expanded") === "true";
+  const onEnd = (e) => {
+    if (e.propertyName !== "height") return;
+    panel.style.transition = "";
+    panel.style.height = "auto"; // so it can grow if content wraps
+    panel.removeEventListener("transitionend", onEnd);
+  };
+  panel.addEventListener("transitionend", onEnd);
+}
 
-    // if clicking the already-open one -> close it
-    if (expanded) {
-      closeAll();
-      return;
-    }
+function animateClose(panel){
+  if (!panel) return;
 
-    closeAll();
+  if (prefersReduced) {
+    panel.hidden = true;
+    panel.style.height = "";
+    panel.style.opacity = "";
+    panel.style.transform = "";
+    panel.style.transition = "";
+    return;
+  }
 
-    // open the clicked one
-    btn.setAttribute("aria-expanded", "true");
-    const panelId = btn.getAttribute("aria-controls");
-    const panel = panelId ? document.getElementById(panelId) : null;
-    if (panel) panel.hidden = false;
+  // from current height -> 0
+  panel.style.height = `${panel.scrollHeight}px`;
+  panel.style.opacity = "1";
+  panel.style.transform = "translateY(0)";
+  panel.style.transition = "height 240ms ease, opacity 160ms ease, transform 160ms ease";
 
-    // make this card span full width
-    const card = btn.closest(".home-project");
-    if (card) card.classList.add("is-open");
+  requestAnimationFrame(() => {
+    panel.style.height = "0px";
+    panel.style.opacity = "0";
+    panel.style.transform = "translateY(-6px)";
+  });
+
+  const onEnd = (e) => {
+    if (e.propertyName !== "height") return;
+    panel.hidden = true;
+    panel.style.transition = "";
+    panel.style.height = "";
+    panel.style.opacity = "";
+    panel.style.transform = "";
+    panel.removeEventListener("transitionend", onEnd);
+  };
+  panel.addEventListener("transitionend", onEnd);
+}
+
+function setCardOpen(card, open){
+  const btn = card.querySelector(".home-project__toggle");
+  const panel = card.querySelector(".home-project__details");
+  if (!btn || !panel) return;
+
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+
+  if (open) {
+    card.classList.add("is-open");
+    animateOpen(panel);
+  } else {
+    card.classList.remove("is-open");
+    animateClose(panel);
+  }
+}
+
+
+// ✅ INIT GUARD so this never binds twice
+if (grid.dataset.homeAccordionInit !== "1") {
+  grid.dataset.homeAccordionInit = "1";
+
+  let activeCard = null;
+
+  // ✅ One listener for the whole grid (event delegation)
+grid.addEventListener("click", (e) => {
+  const btn = e.target.closest(".home-project__toggle");
+  if (!btn || !grid.contains(btn)) return;
+
+  console.count("accordion click");   // ✅ ADD IT RIGHT HERE
+
+  const card = btn.closest(".home-project");
+  if (!card) return;
+
+  const willOpen = card !== activeCard;
+
+  flip(() => {
+    if (activeCard && activeCard !== card) setCardOpen(activeCard, false);
+    setCardOpen(card, willOpen);
+    activeCard = willOpen ? card : null;
   });
 });
 
+}
+
+
+// FLIP: animate other cards moving smoothly when layout changes
+function flip(action){
+  if (prefersReduced) {
+    action();
+    return;
   }
+
+  const cs = cards();
+  const first = cs.map(c => c.getBoundingClientRect());
+
+  action(); // apply open/close changes that trigger reflow
+
+  const last = cs.map(c => c.getBoundingClientRect());
+
+  cs.forEach((c, i) => {
+    const dx = first[i].left - last[i].left;
+    const dy = first[i].top - last[i].top;
+    if (dx || dy) {
+      c.animate(
+        [
+          { transform: `translate(${dx}px, ${dy}px)` },
+          { transform: "translate(0, 0)" }
+        ],
+        { duration: 260, easing: "cubic-bezier(.2,.8,.2,1)" }
+      );
+    }
+  });
+}
+
+// Hook clicks
+
+
+
+
+
+}
 
 
 

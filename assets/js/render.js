@@ -47,7 +47,10 @@ function typeText(el, text, { speed = 5, delay = 50 } = {}) {
 
 
 export function renderHero(profile) {
-  const nameEl = document.getElementById("name");
+
+  
+
+const nameEl = document.getElementById("name");
 const fullName = profile.fullName || "";
 
 // type only on first load (per tab session) and only on home page
@@ -153,6 +156,24 @@ if (nameEl) {
       }
     });
   }
+
+// ✅ Hero photo on home page + lightbox (same behavior as contact)
+const photoSlot = document.getElementById("heroPhotoSlot");
+const photoSrc = profile?.photo || "./assets/images/profile.jpg";
+
+if (photoSlot) {
+  photoSlot.innerHTML = `
+    <article class="card hero-photo-card">
+      <img class="hero-photo" id="heroPhotoImg"
+           src="${escapeHtml(photoSrc)}"
+           alt="Profile photo" />
+    </article>
+  `;
+
+  const imgEl = document.getElementById("heroPhotoImg");
+  bindPhotoLightbox(imgEl);
+}
+
 
   const c = profile.contacts || {};
   const meta = [
@@ -317,5 +338,45 @@ export function volunteeringCard(v) {
     meta: `${formatRange(v.start, v.end)}${v.cause ? " • " + v.cause : ""}`,
     highlights: v.highlights ?? [],
     tags: []
+  });
+}
+
+function bindPhotoLightbox(imgEl) {
+  if (!imgEl || imgEl.dataset.lightboxBound === "1") return;
+  imgEl.dataset.lightboxBound = "1";
+
+  const modal = document.getElementById("photoModal");
+  const modalImg = document.getElementById("photoModalImg");
+  const closeBtn = document.getElementById("photoModalClose");
+
+  if (!modal || !modalImg || !closeBtn) return;
+
+  const open = () => {
+    modalImg.src = imgEl.src;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const close = () => {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    modalImg.src = "";
+    document.body.style.overflow = "";
+  };
+
+  imgEl.style.cursor = "zoom-in";
+  imgEl.addEventListener("click", open);
+
+  closeBtn.addEventListener("click", close);
+
+  // backdrop click
+  modal.addEventListener("click", (e) => {
+    if (e.target?.dataset?.close === "true") close();
+  });
+
+  // ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
   });
 }

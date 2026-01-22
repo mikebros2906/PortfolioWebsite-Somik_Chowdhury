@@ -123,6 +123,55 @@ a:hover{ text-decoration:underline; }
   box-shadow: var(--shadow);
 }
 
+/* ===== Hero: summary + photo side-by-side ===== */
+.hero-main{
+  margin-top: 14px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.hero-main__text{
+  flex: 1 1 560px;
+  min-width: 260px;
+}
+
+.hero-main__photo{
+  flex: 0 0 260px;  /* controls right column width */
+}
+
+.hero-photo-card{
+  padding: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+
+  /* force visibility */
+  background: rgba(0,0,0,0.14);
+  border: 1px solid rgba(0,0,0,0.18);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+}
+
+.hero-photo{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;          /* inner rounding */
+  border: 1px solid rgba(255,255,255,0.25);
+  display: block;
+}
+
+/* Stack nicely on mobile */
+@media (max-width: 720px){
+  .hero-main{
+    flex-direction: column-reverse; /* text first, photo below (or change to column if you want photo first) */
+  }
+  .hero-main__photo{
+    flex-basis: auto;
+    width: min(360px, 100%);
+  }
+}
+
+
 #name{
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-weight: 700; /* optional */
@@ -423,6 +472,8 @@ a:hover{ text-decoration:underline; }
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .photo-modal__content{
@@ -712,4 +763,31 @@ a:hover{ text-decoration:underline; }
 /* Home Projects accordion: when open, take full row so others realign */
 #homeProjects .home-project.is-open{
   grid-column: 1 / -1;   /* span all 12 columns */
+}
+
+@media (max-width: 720px){
+  .hero-main{
+    flex-direction: column-reverse;
+  }
+
+  /* ✅ remove the forced “560px height” on mobile */
+  .hero-main__text{
+    flex: 0 1 auto;      /* content-height */
+    min-width: 0;        /* prevents weird overflow */
+  }
+
+  .hero-main__photo{
+    flex: 0 0 auto;      /* don’t reserve fixed space */
+    width: min(360px, 100%);
+  }
+}
+
+/* Smooth accordion: allow height animation */
+#homeProjects .home-project__details{
+  overflow: hidden;
+}
+
+/* Smooth reflow (FLIP uses transforms) */
+#homeProjects .home-project{
+  will-change: transform;
 }
