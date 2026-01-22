@@ -72,9 +72,6 @@ if (nameEl) {
   setText("headline", profile.headline);
   setText("location", profile.location);
 
-  const summary = (profile.summary || "").split("\n").map(line => `<p class="subtitle">${escapeHtml(line)}</p>`).join("");
-  setHtml("summary", summary);
-
   const rawSummary = profile.summary || "";
 
   function splitParagraphs(text) {
@@ -125,36 +122,82 @@ if (nameEl) {
     setHtml("summary", fullHtml);
   } else {
     setHtml(
-      "summary",
-      `
-      <div class="summary">
-        <div id="summaryShort">${previewHtml}</div>
-        <div id="summaryFull" hidden>${fullHtml}</div>
-        <button class="btn summary-toggle" id="summaryToggle" type="button" aria-expanded="false">
-          Read more
-        </button>
+  "summary",
+  `
+  <div class="summary">
+    <div class="summary-box" id="summaryBox" aria-live="polite">
+      <div class="summary-inner" id="summaryInner">
+        ${previewHtml}
       </div>
-      `
-    );
+    </div>
+
+    <button class="btn summary-toggle" id="summaryToggle" type="button" aria-expanded="false">
+      Read more
+    </button>
+  </div>
+  `
+);
 
     const btn = document.getElementById("summaryToggle");
-    const shortEl = document.getElementById("summaryShort");
-    const fullEl = document.getElementById("summaryFull");
+const box = document.getElementById("summaryBox");
+const inner = document.getElementById("summaryInner");
 
-    btn?.addEventListener("click", () => {
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!expanded));
+if (btn && box && inner) {
+  const prefersReduced =
+    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
-      if (expanded) {
-        fullEl.hidden = true;
-        shortEl.hidden = false;
-        btn.textContent = "Read more";
-      } else {
-        fullEl.hidden = false;
-        shortEl.hidden = true;
-        btn.textContent = "Show less";
-      }
+  let expanded = false;
+
+  const animateHeight = (from, to) => {
+    if (prefersReduced) {
+      box.style.height = "auto";
+      return;
+    }
+
+    box.style.height = `${from}px`;
+    box.style.transition = "height 260ms ease, opacity 180ms ease";
+    box.style.opacity = "0.98";
+
+    // force reflow so transition applies
+    box.getBoundingClientRect();
+
+    requestAnimationFrame(() => {
+      box.style.height = `${to}px`;
+      box.style.opacity = "1";
     });
+
+    const onEnd = (e) => {
+      if (e.propertyName !== "height") return;
+      box.style.transition = "";
+      box.style.height = "auto"; // allow responsive wrapping after animation
+      box.removeEventListener("transitionend", onEnd);
+    };
+    box.addEventListener("transitionend", onEnd);
+  };
+
+  // Set initial measured height (so first expand animates smoothly)
+  const initHeight = inner.getBoundingClientRect().height;
+  box.style.height = `${initHeight}px`;
+
+  btn.addEventListener("click", () => {
+    const from = inner.getBoundingClientRect().height;
+
+    expanded = !expanded;
+    btn.setAttribute("aria-expanded", String(expanded));
+    btn.textContent = expanded ? "Show less" : "Read more";
+
+    // Swap content, then measure target height
+    inner.innerHTML = expanded ? fullHtml : previewHtml;
+
+    const to = inner.getBoundingClientRect().height;
+
+    // Animate box height from old -> new
+    animateHeight(from, to);
+  });
+}
+
+
+
   }
 
 // ✅ Hero photo on home page + lightbox (same behavior as contact)

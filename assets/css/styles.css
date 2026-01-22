@@ -791,3 +791,9 @@ a:hover{ text-decoration:underline; }
 #homeProjects .home-project{
   will-change: transform;
 }
+
+@media (prefers-reduced-motion: no-preference){
+  .summary-box{
+    transition: height 260ms ease;
+  }
+}
