@@ -31,6 +31,18 @@ body{
   position: relative; /* required for ::before */
 }
 
+/* ✅ Lock background scroll when mobile menu is open */
+body.nav-open {
+  overflow: hidden;
+}
+
+@media (max-width: 872px){
+  body.nav-open .nav-links{
+    overscroll-behavior: contain;
+  }
+}
+
+
 body::before{
   content:"";
   position: fixed;

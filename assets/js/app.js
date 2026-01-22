@@ -528,6 +528,27 @@ async function renderContact(db) {
 }
 
 function initMobileNav(){
+
+  let _scrollY = 0;
+
+function lockScroll(){
+  _scrollY = window.scrollY || 0;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${_scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+}
+
+function unlockScroll(){
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, _scrollY);
+}
+
   const btn = document.querySelector(".nav-toggle");
   const menu = document.getElementById("navMenu");
   if (!btn || !menu) return;
@@ -546,12 +567,14 @@ function initMobileNav(){
     document.body.classList.remove("nav-open");
     btn.setAttribute("aria-expanded", "false");
     btn.setAttribute("aria-label", "Open menu");
+    unlockScroll(); // ✅ add
   }
 
   function openMenu(){
     document.body.classList.add("nav-open");
     btn.setAttribute("aria-expanded", "true");
     btn.setAttribute("aria-label", "Close menu");
+    lockScroll(); // ✅ add
   }
 
   btn.addEventListener("click", () => {
