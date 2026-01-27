@@ -809,3 +809,7 @@ a:hover{ text-decoration:underline; }
     transition: height 260ms ease;
   }
 }
+
+.cert-skill-tags{
+  margin-top: 8px;
+}

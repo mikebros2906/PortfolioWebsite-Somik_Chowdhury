@@ -356,9 +356,14 @@ export function certificationCard(c) {
     `
     : "";
 
-  const skillsLine = skills.length
-    ? `<div class="meta"><strong>Skills:</strong> ${escapeHtml(skills.join(" • "))}</div>`
-    : "";
+const skillsTags = skills.length
+  ? `
+    <div class="tags cert-skill-tags">
+      ${skills.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("")}
+    </div>
+  `
+  : "";
+
 
   return `
     <article class="card">
@@ -366,7 +371,7 @@ export function certificationCard(c) {
       ${issuer ? `<div class="meta">${escapeHtml(issuer)}</div>` : ""}
       ${issued ? `<div class="meta">Issued ${escapeHtml(issued)}</div>` : ""}
       ${credentialBtn}
-      ${skillsLine}
+      ${skillsTags}
     </article>
   `;
 }

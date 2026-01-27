@@ -33,7 +33,8 @@
         "Editing",
         "Articles",
         "Creative Writing",
-        "Video editor"
+        "Video editor",
+        "Business Intelligence"
       ]
     },
     {
@@ -51,7 +52,8 @@
         "Proteus",
         "Keil uVision",
         "Cisco Packet tracer",
-        "emu8086 emulator"
+        "emu8086 emulator",
+        "Microsoft Power BI"
       ]
     },
     {
@@ -128,7 +130,8 @@
         "Exploratory Data Analysis",
         "Machine Learning",
         "Git",
-        "Tableau"
+        "Tableau",
+        "Microsoft Power BI"
       ]
     }
   ]
@@ -484,6 +487,14 @@
     }
   ],
   "certifications": [
+  {
+    "title": "Power BI Essential Training",
+    "issuer": "National Association of State Boards of Accountancy (NASBA)",
+    "issued": "January 2026",
+    "credentialId": "",
+    "credentialUrl": "https://www.linkedin.com/learning/certificates/20724e78785c8751ec8554c69ce8d0542470e02e09a0c5d139f3cada8bf81677?trk=share_certificate",
+    "skills": ["Microsoft Power BI", "Business Intelligence"]
+  },
   {
     "title": "Machine Learning with Python: Foundations",
     "issuer": "LinkedIn Learning Community",
