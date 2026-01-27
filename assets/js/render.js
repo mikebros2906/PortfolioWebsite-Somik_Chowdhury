@@ -350,7 +350,7 @@ export function certificationCard(c) {
     ? `
       <div class="project-links">
         <a class="btn btn--sm github-btn" href="${escapeHtml(credentialUrl)}" target="_blank" rel="noreferrer">
-          Show credential
+          Check Certificate
         </a>
       </div>
     `
