@@ -528,58 +528,42 @@ async function renderContact(db) {
 }
 
 function initMobileNav(){
-
-  let _scrollY = 0;
-
-function lockScroll(){
-  _scrollY = window.scrollY || 0;
-  document.body.style.position = "fixed";
-  document.body.style.top = `-${_scrollY}px`;
-  document.body.style.left = "0";
-  document.body.style.right = "0";
-  document.body.style.width = "100%";
-}
-
-function unlockScroll(){
-  document.body.style.position = "";
-  document.body.style.top = "";
-  document.body.style.left = "";
-  document.body.style.right = "";
-  document.body.style.width = "";
-  window.scrollTo(0, _scrollY);
-}
-
   const btn = document.querySelector(".nav-toggle");
   const menu = document.getElementById("navMenu");
   if (!btn || !menu) return;
 
-  // Close when tapping the empty area of the overlay (not a link)
-  menu.addEventListener("click", (e) => {
-  if (e.target === menu) {
-    document.body.classList.remove("nav-open");
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-label", "Open menu");
-  }
-  });
+  const lockScroll = () => {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  };
 
+  const unlockScroll = () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  };
 
   function closeMenu(){
     document.body.classList.remove("nav-open");
+    unlockScroll(); // ✅ always unlock here
     btn.setAttribute("aria-expanded", "false");
     btn.setAttribute("aria-label", "Open menu");
-    unlockScroll(); // ✅ add
   }
 
   function openMenu(){
     document.body.classList.add("nav-open");
+    lockScroll();   // ✅ always lock here
     btn.setAttribute("aria-expanded", "true");
     btn.setAttribute("aria-label", "Close menu");
-    lockScroll(); // ✅ add
   }
 
   btn.addEventListener("click", () => {
     const isOpen = document.body.classList.contains("nav-open");
     isOpen ? closeMenu() : openMenu();
+  });
+
+  // ✅ overlay click should call closeMenu (not manual class remove)
+  menu.addEventListener("click", (e) => {
+    if (e.target === menu) closeMenu();
   });
 
   // Close when clicking a nav link (mobile)
@@ -605,6 +589,7 @@ function unlockScroll(){
     if (window.innerWidth > 720) closeMenu();
   });
 }
+
 
 
 (async function main() {
