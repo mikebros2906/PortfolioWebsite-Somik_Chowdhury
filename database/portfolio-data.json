@@ -322,6 +322,10 @@
         {
           "label": "View GitHub Repository",
           "url": "https://github.com/mikebros2906/Medical-Condition-Classification-and-Patient-Profiling-Using-Clinical-and-Lifestyle-Data"
+        },
+        {
+          "label": "Kaggle Notebook",
+          "url": "https://www.kaggle.com/code/somikchowdhury/medical-condition-classification"
         }
       ]
     },

@@ -303,18 +303,32 @@ export function projectCard(p) {
   const skills = Array.isArray(p?.skills) ? p.skills : [];
 
   // ✅ GitHub links only (hide if none)
-const githubLinks = (Array.isArray(p?.links) ? p.links : [])
+const actionLinks = (Array.isArray(p?.links) ? p.links : [])
   .filter(l => l && l.url && String(l.url).trim())
-  .filter(l => /github/i.test(l.label || "") || /github\.com/i.test(l.url || ""));
+  .filter(l =>
+    /github/i.test(l.label || "") ||
+    /github\.com/i.test(l.url || "") ||
+    /kaggle/i.test(l.label || "") ||
+    /kaggle\.com/i.test(l.url || "")
+  );
 
-const repoHtml = githubLinks.length
+const linksHtml = actionLinks.length
   ? `
     <div class="project-links">
-      ${githubLinks.map(l => {
-        const raw = (l.label || "").trim();
-        const text = /github/i.test(raw) ? "View Github Repository" : (raw || "View Repo");
+      ${actionLinks.map(l => {
+        const url = String(l.url).trim();
+        const label = String(l.label || "").trim();
+
+        const isGithub = /github\.com/i.test(url) || /github/i.test(label);
+        const isKaggle = /kaggle\.com/i.test(url) || /kaggle/i.test(label);
+
+        const text =
+          isGithub ? "View Github Repository" :
+          isKaggle ? "Open Kaggle Notebook" :
+          (label || "Open link");
+
         return `
-          <a class="btn btn--sm github-btn" href="${escapeHtml(l.url)}" target="_blank" rel="noreferrer">
+          <a class="btn btn--sm github-btn" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
             ${escapeHtml(text)}
           </a>
         `;
@@ -322,6 +336,8 @@ const repoHtml = githubLinks.length
     </div>
   `
   : "";
+
+
 
   return `
     <article class="card">
@@ -331,7 +347,7 @@ const repoHtml = githubLinks.length
 
       ${highlights.length ? `<ul>${highlights.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>` : ""}
 
-      ${repoHtml}  
+      ${linksHtml}  
       
       ${skills.length ? `<div class="tags">${skills.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("")}</div>` : ""}    
     </article>
