@@ -304,13 +304,7 @@ export function projectCard(p) {
 
   // ✅ GitHub links only (hide if none)
 const actionLinks = (Array.isArray(p?.links) ? p.links : [])
-  .filter(l => l && l.url && String(l.url).trim())
-  .filter(l =>
-    /github/i.test(l.label || "") ||
-    /github\.com/i.test(l.url || "") ||
-    /kaggle/i.test(l.label || "") ||
-    /kaggle\.com/i.test(l.url || "")
-  );
+  .filter(l => l && l.url && String(l.url).trim());
 
 const linksHtml = actionLinks.length
   ? `
@@ -321,10 +315,12 @@ const linksHtml = actionLinks.length
 
         const isGithub = /github\.com/i.test(url) || /github/i.test(label);
         const isKaggle = /kaggle\.com/i.test(url) || /kaggle/i.test(label);
+        const isStreamlit = /streamlit\.app/i.test(url) || /streamlit/i.test(label);
 
         const text =
           isGithub ? "View Github Repository" :
           isKaggle ? "Open Kaggle Notebook" :
+          isStreamlit ? "Open Streamlit App" :
           (label || "Open link");
 
         return `

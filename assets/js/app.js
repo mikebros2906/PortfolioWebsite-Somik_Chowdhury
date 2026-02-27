@@ -108,54 +108,64 @@ async function renderHome(db) {
   const container = document.getElementById("homeProjects");
   if (container) {
     const grid = container; // ✅ alias so the code using "grid" works
-    const projectDetailsHtml = (p) => {
-      const org = p?.associatedWith || "";
-      const start = p?.start || "";
-      const end = p?.end || "";
-      const highlights = Array.isArray(p?.highlights) ? p.highlights : [];
-      const skills = Array.isArray(p?.skills) ? p.skills : [];
+const projectDetailsHtml = (p) => {
+  const org = p?.associatedWith || "";
+  const start = p?.start || "";
+  const end = p?.end || "";
+  const highlights = Array.isArray(p?.highlights) ? p.highlights : [];
+  const skills = Array.isArray(p?.skills) ? p.skills : [];
 
-      // GitHub links only
-      const githubLinks = (Array.isArray(p?.links) ? p.links : [])
-        .filter(l => l && l.url && String(l.url).trim())
-        .filter(l => /github/i.test(l.label || "") || /github\.com/i.test(l.url || ""));
+  // ✅ Action links (GitHub / Kaggle / Streamlit / anything)
+  const actionLinks = (Array.isArray(p?.links) ? p.links : [])
+    .filter(l => l && l.url && String(l.url).trim());
 
-      const repoHtml = githubLinks.length
-        ? `
-          <div class="project-links">
-            ${githubLinks.map(l => {
-              const raw = (l.label || "").trim();
-              const text = /github/i.test(raw) ? "View Github Repository" : (raw || "View Repo");
-              return `
-                <a class="btn btn--sm github-btn" href="${escapeHtml(l.url)}" target="_blank" rel="noreferrer">
-                  ${escapeHtml(text)}
-                </a>
-              `;
-            }).join("")}
-          </div>
-        `
-        : "";
+  const linksHtml = actionLinks.length
+    ? `
+      <div class="project-links">
+        ${actionLinks.map(l => {
+          const url = String(l.url).trim();
+          const label = String(l.label || "").trim();
 
-      const dateHtml = (start || end)
-        ? `<div class="meta">${escapeHtml(start)}${start && end ? " – " : ""}${escapeHtml(end)}</div>`
-        : "";
+          const isGithub = /github\.com/i.test(url) || /github/i.test(label);
+          const isKaggle = /kaggle\.com/i.test(url) || /kaggle/i.test(label);
+          const isStreamlit = /streamlit\.app/i.test(url) || /streamlit/i.test(label);
 
-      const highlightsHtml = highlights.length
-        ? `<ul>${highlights.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
-        : "";
+          const text =
+            isGithub ? "View Github Repository" :
+            isKaggle ? "Open Kaggle Notebook" :
+            isStreamlit ? "Open Streamlit App" :
+            (label || "Open link");
 
-      const skillsHtml = skills.length
-        ? `<div class="tags">${skills.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("")}</div>`
-        : "";
+          return `
+            <a class="btn btn--sm github-btn" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
+              ${escapeHtml(text)}
+            </a>
+          `;
+        }).join("")}
+      </div>
+    `
+    : "";
 
-      return `
-        ${org ? `<div class="meta">${escapeHtml(org)}</div>` : ""}
-        ${dateHtml}
-        ${highlightsHtml}
-        ${repoHtml}
-        ${skillsHtml}
-      `;
-    };
+  const dateHtml = (start || end)
+    ? `<div class="meta">${escapeHtml(start)}${start && end ? " – " : ""}${escapeHtml(end)}</div>`
+    : "";
+
+  const highlightsHtml = highlights.length
+    ? `<ul>${highlights.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
+    : "";
+
+  const skillsHtml = skills.length
+    ? `<div class="tags">${skills.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("")}</div>`
+    : "";
+
+  return `
+    ${org ? `<div class="meta">${escapeHtml(org)}</div>` : ""}
+    ${dateHtml}
+    ${highlightsHtml}
+    ${linksHtml}
+    ${skillsHtml}
+  `;
+};
 
     container.innerHTML = latest4.map((p, i) => {
       const id = `homeProjDetails-${i}`;
