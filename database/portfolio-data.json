@@ -287,6 +287,32 @@
   ],
   "projects": [
     {
+      "title": "Brain Tumor Prediction using Deep Learning",
+      "start": "2025-12",
+      "end": "2026-03",
+      "associatedWith": "",
+      "highlights": [
+        "Analyzed and provided insights for the Melbourne Housing dataset.",
+        "Managed 35,000+ data points by imputing missing values and resolving outliers where necessary.",
+        "Identified focus areas for sales strategy based on exploratory analysis."
+      ],
+      "skills": [
+        "Data Analysis",
+        "Jupyter",
+        "Exploratory Data Analysis"
+      ],
+      "links": [
+        {
+          "label": "View GitHub Repository",
+          "url": "https://github.com/mikebros2906/Brain-Tumor-Prediction"
+        },
+        {
+          "label": "Open Streamlit App",
+          "url": "https://brain-tumor-prediction-somik-chowdhury.streamlit.app/"
+        }
+      ]
+    },
+    {
       "title": "Melbourne Housing Data Analysis using Jupyter",
       "start": "2025-10",
       "end": "2025-12",
