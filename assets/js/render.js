@@ -320,7 +320,7 @@ const linksHtml = actionLinks.length
         const text =
           isGithub ? "View Github Repository" :
           isKaggle ? "Open Kaggle Notebook" :
-          isStreamlit ? "Open Streamlit App" :
+          isStreamlit ? "Open Streamlit App*" :
           (label || "Open link");
 
         return `
